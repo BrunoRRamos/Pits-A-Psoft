@@ -13,9 +13,11 @@ public class RetornaEntidades {
     public static Cliente retornaCliente(Long clienteId, ClienteRepository clienteRepository){
         return clienteRepository.findById(clienteId).orElseThrow(() -> new ClienteNotFoundException());
     }
+
     public static Estabelecimento retornaEstabelecimento(Long estabelecimentoId, EstabelecimentoRepository estabelecimentoRepository){
         return estabelecimentoRepository.findById(estabelecimentoId).orElseThrow(() -> new EstabelecimentoNaoEncontrado());
     }
+
     public static Pedido retornaPedido (Long pedidoId, PedidoRepository pedidoRepository){
         return pedidoRepository.findById(pedidoId).orElseThrow(() -> new PedidoNaoEncontrado());
     }

@@ -1,6 +1,7 @@
 package com.ufcg.psoft.commerce.model;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
 public class Associacao {
 
     @EmbeddedId

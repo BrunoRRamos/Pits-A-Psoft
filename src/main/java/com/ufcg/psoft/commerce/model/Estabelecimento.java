@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.*;
 
 @Entity(name = "estabelecimento")
@@ -15,6 +16,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
 public class Estabelecimento {
 
     @Id

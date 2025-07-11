@@ -33,7 +33,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DisplayName("Testes do controlador de Sabores")
 public class SaborControllerTests {
+
   final String URI_SABORES = "/sabores";
+
   @Autowired
   MockMvc driver;
 

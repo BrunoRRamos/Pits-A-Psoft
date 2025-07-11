@@ -3,6 +3,7 @@ package com.ufcg.psoft.commerce.model;
 import java.util.Set;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
 public class Sabor {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)

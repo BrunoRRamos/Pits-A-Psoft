@@ -49,8 +49,6 @@ public class ClienteControllerTests {
 
     ClientePostPutRequestDTO clientePostPutRequestDTO;
 
-
-
     @BeforeEach
     void setup() {
         // Object Mapper suporte para LocalDateTime
