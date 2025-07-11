@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
+
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 
 @AnalyzeClasses(
@@ -107,6 +108,17 @@ public class ArchitectureTests {
             classes().that().haveSimpleNameEndingWith("DTO")
                     .or().haveSimpleNameEndingWith("Dto")
                     .should().resideInAPackage("..dto..");
+
+    @ArchTest
+    static final ArchRule dtos_should_be_imutable =
+            classes().that().resideInAPackage("..dto..")
+                    .and().areNotInterfaces()
+                    .and().areNotAnnotations()
+                    .and().areNotEnums()
+                    .and().areNotMemberClasses()
+                    .should().haveOnlyFinalFields()
+                    .orShould().beRecords()
+                    .allowEmptyShould(true);
 
     @ArchTest
     static final ArchRule model_classes_should_be_transactional =
