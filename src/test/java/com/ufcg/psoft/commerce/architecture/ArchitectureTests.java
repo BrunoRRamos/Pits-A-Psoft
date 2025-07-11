@@ -4,6 +4,9 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
+import com.tngtech.archunit.library.Architectures;
+import com.ufcg.psoft.commerce.Util.RetornaEntidades;
+import com.ufcg.psoft.commerce.repository.ClienteRepository;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.transaction.Transactional;
@@ -140,4 +143,16 @@ public class ArchitectureTests {
                     .should().beAnnotatedWith(Entity.class)
                     .orShould().beAnnotatedWith(Embeddable.class)
                     .allowEmptyShould(true);
+
+    @ArchTest
+    public static final ArchRule layer_dependencies_are_respected = Architectures
+            .layeredArchitecture()
+            .consideringAllDependencies()
+            .layer("Controllers").definedBy("com.ufcg.psoft.commerce.controller..")
+            .layer("Services").definedBy("com.ufcg.psoft.commerce.service..")
+            .layer("Persistence").definedBy("com.ufcg.psoft.commerce.repository..")
+
+            .whereLayer("Controllers").mayNotBeAccessedByAnyLayer()
+            .whereLayer("Services").mayOnlyBeAccessedByLayers("Controllers")
+            .whereLayer("Persistence").mayOnlyBeAccessedByLayers("Services");
 }
