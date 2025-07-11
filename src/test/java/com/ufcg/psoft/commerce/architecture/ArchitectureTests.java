@@ -110,7 +110,7 @@ public class ArchitectureTests {
                     .should().resideInAPackage("..dto..");
 
     @ArchTest
-    static final ArchRule dtos_should_be_imutable =
+    static final ArchRule dtos_should_be_immutable =
             classes().that().resideInAPackage("..dto..")
                     .and().areNotInterfaces()
                     .and().areNotAnnotations()
